@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.api.infrastructure.config;
+package org.springframework.samples.petclinic.api.dto;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import java.util.List;
+import lombok.Value;
 
-@Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }
+/**
+ * @author Maciej Szarlinski
+ */
+@Value
+public class Visits {
+    private List<VisitDetails> items;
 }

@@ -13,27 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.api.application;
+package org.springframework.samples.petclinic.api.dto;
 
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Maciej Szarlinski
  */
 @Data
-public class PetDetails {
+public class PetType {
 
-    private final int id;
-
-    private final String name;
-
-    private final String birthDate;
-
-    private final PetType type;
-
-    private final List<VisitDetails> visits = new ArrayList<>();
-
+    private String name;
 }
