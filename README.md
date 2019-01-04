@@ -1,6 +1,6 @@
 # Distributed version of the Spring PetClinic Sample Application built with Spring Cloud 
 
-[![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Dependency Status](https://www.versioneye.com/user/projects/58b2c56f9ceb450031272d6a/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58b2c56f9ceb450031272d6a)
+[![Build Status](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices.svg?branch=master)](https://travis-ci.org/spring-petclinic/spring-petclinic-microservices/) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This microservices branch was initially derived from [AngularJS version](https://github.com/spring-petclinic/spring-petclinic-angular1) to demonstrate how to split sample Spring application into [microservices](http://www.martinfowler.com/articles/microservices.html). To achieve that goal we used [Spring Cloud Netflix](https://github.com/spring-cloud/spring-cloud-netflix) technology stack.
 
@@ -12,8 +12,12 @@ If everything goes well, you can access the following services at given location
 * Config Server - http://localhost:8888
 * AngularJS frontend (API Gateway) - http://localhost:8080
 * Customers, Vets and Visits Services - random port, check Eureka Dashboard 
-* Tracing Server (Zipkin) - http://localhost:9411/zipkin (we use [openzipkin](https://github.com/openzipkin/zipkin/tree/master/zipkin-server))
+* Tracing Server (Zipkin) - http://localhost:9411/zipkin/ (we use [openzipkin](https://github.com/openzipkin/zipkin/tree/master/zipkin-server))
 * Admin Server (Spring Boot Admin) - http://localhost:9090
+* Hystrix Dashboard for Circuit Breaker pattern - http://localhost:7979 - On the home page is a form where you can enter 
+the URL for an event stream to monitor, for example the `api-gateway` service running locally: `http://localhost:8080/actuator/hystrix.stream` 
+or running into docker: `http://api-gateway:8080/actuator/hystrix.stream`
+
 
 You can tell Config Server to use your local Git repository by using `local` Spring profile and setting
 `GIT_REPO` environment variable, for example:
@@ -30,12 +34,21 @@ available by default at http://localhost:8761.
 *NOTE: Under MacOSX or Windows, make sure that the Docker VM has enough memory to run the microservices. The default settings
 are usually not enough and make the `docker-compose up` painfully slow.*
 
-## Understanding the Spring Petclinic application with a few diagrams
-<a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
+## Understanding the Spring Petclinic application
+
+[See the presentation of the Spring Petclinic Framework version](http://fr.slideshare.net/AntoineRey/spring-framework-petclinic-sample-application)
+
+[A blog bost introducing the Spring Petclinic Microsevices](http://javaetmoi.com/2018/10/architecture-microservices-avec-spring-cloud/) (french language)
 
 You can then access petclinic here: http://localhost:8080/
 
-<img width="782" alt="springboot-petclinic" src="https://cloud.githubusercontent.com/assets/838318/19653851/61c1986a-9a16-11e6-8b94-03fd7f775bb3.png">
+![Spring Petclinic Microservices screenshot](docs/application-screenshot.png)
+
+
+**Architecture diagram of the Spring Petclinic Microservices**
+
+![Spring Petclinic Microservices architecture](docs/microservices-architecture-diagram.jpg)
+
 
 ## In case you find a bug/suggested improvement for Spring Petclinic Microservices
 
@@ -81,7 +94,7 @@ the host and port of your MySQL JDBC connection string.
 | Service Discovery       | [Eureka server](spring-petclinic-discovery-server) and [Service discovery client](spring-petclinic-vets-service/src/main/java/org/springframework/samples/petclinic/vets/VetsServiceApplication.java) |
 | API Gateway             | [Zuul reverse proxy](spring-petclinic-api-gateway/src/main/java/org/springframework/samples/petclinic/api/ApiGatewayApplication.java) and [Routing configuration](https://github.com/spring-petclinic/spring-petclinic-microservices-config/blob/master/api-gateway.yml) |
 | Docker Compose          | [Spring Boot with Docker guide](https://spring.io/guides/gs/spring-boot-docker/) and [docker-compose file](docker-compose.yml) |
-| Circuit Breaker         | TBD |
+| Circuit Breaker         | [Circuit Breaker with Hystrix guide](https://spring.io/guides/gs/circuit-breaker/) and [fallback method configuration](spring-petclinic-api-gateway/src/main/java/org/springframework/samples/petclinic/api/application/VisitsServiceClient.java) |
 | Graphite Monitoring     | TBD |
 
  Front-end module  | Files |
@@ -91,6 +104,16 @@ the host and port of your MySQL JDBC connection string.
 | Gulp              | [Tasks automated by Gulp: minify CSS and JS, generate CSS from LESS, copy other static resources](spring-petclinic-ui/gulpfile.js)  |
 | Angular JS        | [app.js, controllers and templates](spring-petclinic-ui/src/scripts/)  |
 
+
+## Interesting Spring Petclinic forks
+
+The Spring Petclinic master branch in the main [spring-projects](https://github.com/spring-projects/spring-petclinic)
+GitHub org is the "canonical" implementation, currently based on Spring Boot and Thymeleaf.
+
+This [spring-petclinic-microservices](https://github.com/spring-petclinic/spring-petclinic-microservices/) project is one of the [several forks](https://spring-petclinic.github.io/docs/forks.html) 
+hosted in a special GitHub org: [spring-petclinic](https://github.com/spring-petclinic).
+If you have a special interest in a different technology stack
+that could be used to implement the Pet Clinic then please join the community there.
 
 
 # Contributing
