@@ -25,7 +25,6 @@ hs_err_pid*
 ### Code-Java ###
 # Language Support for Java(TM) by Red Hat extension 
 # for Visual Studio Code - https://marketplace.visualstudio.com/items?itemName=redhat.java
-
 .project
 .classpath
 factoryConfiguration.json
@@ -36,7 +35,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### Eclipse ###
-
 .metadata
 bin/
 tmp/
@@ -62,7 +60,7 @@ local.properties
 .cproject
 
 # Java annotation processor (APT)
-.factorypath
+*.factorypath
 
 # PDT-specific (PHP Development Tools)
 .buildpath
@@ -151,9 +149,7 @@ fabric.properties
 ### Intellij+all Patch ###
 # Ignores the whole idea folder
 # See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
-
 .idea/
 
 # Branch switching
 generated/
-
