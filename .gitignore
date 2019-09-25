@@ -34,15 +34,10 @@ factoryConfiguration.json
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
-### Eclipse ###
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
+# Jenv
+.java-version
+
+# Eclipse
 .settings/
 .loadpath
 .recommenders
